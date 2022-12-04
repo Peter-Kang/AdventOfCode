@@ -27,5 +27,35 @@ def partOne():
                 break
     print(sum)
 
+def partTwo():
+    ruckSackFile = open('input.txt', 'r')
+    ruckSack = ruckSackFile.readlines()
+    sum = 0
 
+    currentRuck = 0
+    ruckList = []
+    for line in ruckSack:
+        #add the line to the current group
+        stripedLine = line.strip()
+        ruckList.append(stripedLine)
+        
+        #grouping done
+        if(currentRuck == 2):
+        #check for similar letters
+            for i in stripedLine:
+                if ( ruckList[0].rfind(i) != -1 and ruckList[1].rfind(i) != -1):
+                    sum = sum +Priority[i]
+                    #print(i)
+                    break
+            #clean up the group
+            currentRuck = 0
+            ruckList = []
+        else:
+            #increment the currentRuck count
+            currentRuck = currentRuck + 1
+    
+    print( sum )
+    
+    
 partOne()
+partTwo()

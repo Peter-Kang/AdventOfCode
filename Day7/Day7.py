@@ -44,10 +44,21 @@ def partOne():
 
     totalSmallerThenCap = 0
     for instance in directoryTotalSizes:
-        print(instance, directoryTotalSizes[instance])
+        #print(instance, directoryTotalSizes[instance])
         if ( directoryTotalSizes[instance] < directorySizeCap ):
             totalSmallerThenCap = totalSmallerThenCap + directoryTotalSizes[instance]
 
-    print("total that is smaller then cap:", totalSmallerThenCap)
+    print("total that is smaller then 100000:", totalSmallerThenCap)
+    return directoryTotalSizes
 
-partOne()
+def partTwo():
+    dictRes = partOne()
+    cap = 30000000 - (70000000 - dictRes['/'])
+    print( 'cap', cap)
+    dictRes = {key: value for key, value in sorted(dictRes.items(), key=lambda item: item[1])}
+    for instance in dictRes:
+        if( dictRes[instance] > cap ):
+            print(instance, dictRes[instance])
+
+#partOne()
+partTwo()

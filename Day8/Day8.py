@@ -111,5 +111,5 @@ def partTwo():
     print(highestValue)
 
 
-#partOne()
+partOne()
 partTwo()

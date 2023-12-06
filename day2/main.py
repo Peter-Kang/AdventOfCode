@@ -33,9 +33,37 @@ def partOne():
     sum = 0;
     for game in games :
         sum += GetIdCanPlay(game)
+    print("PartOne:",sum)
+
+'''
+Part Two
+'''
+def partTwo():
+    gamesListFile = open('data.txt', 'r');
+    games = gamesListFile.readlines()
+    sum = 0;
+    for game in games :
+        sets = game.split(":")[1].split(";")
+        redMax = 0
+        blueMax = 0
+        greenMax = 0
+        #each set
+        for set in sets:
+            tokenList = set.split(" ")
+            for i in range(len(tokenList)):
+                if((tokenList[i]).isnumeric()):
+                    value = int(tokenList[i])
+                    if((tokenList[i+1].find("red") != -1  and value > redMax) ):
+                        redMax = value;
+                    elif(tokenList[i+1].find("blue") != -1  and value > blueMax ):
+                        blueMax = value;
+                    elif(tokenList[i+1].find("green") != -1  and value > greenMax):
+                        greenMax = value;
+        sum += (redMax*blueMax*greenMax);
     print(sum)
 
 def main():
     partOne()
+    partTwo()
 
 main()
